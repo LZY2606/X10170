@@ -34,3 +34,9 @@ coverage/
 .vite/
 .turbo/
 *.tsbuildinfo
+data/project.json
+data/events.log
+data/*.xml
+!data/.gitkeep
+data/*
+!data/.gitkeep
