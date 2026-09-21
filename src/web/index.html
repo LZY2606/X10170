@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>异文织机</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>异文织机</h1>
+  <p class="subtitle">本地 XML 见证本校勘工具 · 原文原样保存 · 规范化仅为派生视图</p>
+</header>
+<nav id="tabs">
+  <button data-tab="import" class="active">见证导入</button>
+  <button data-tab="align">锚点对齐</button>
+  <button data-tab="overlap">交叠可视化</button>
+  <button data-tab="units">校勘单元</button>
+  <button data-tab="history">版本历史</button>
+  <button data-tab="export">导出预检</button>
+  <button data-tab="roundtrip">往返核验</button>
+</nav>
+<main>
+  <section id="tab-import" class="tab active">
+    <h2>导入见证</h2>
+    <div class="row">
+      <input id="imp-name" placeholder="见证名称，如：甲本">
+      <button id="imp-sample" type="button">填入示例</button>
+    </div>
+    <textarea id="imp-xml" rows="10" placeholder="粘贴原始 XML（将原样保存，不做任何规范化）"></textarea>
+    <button id="imp-submit">导入</button>
+    <h3>已导入见证</h3>
+    <ul id="witness-list"></ul>
+    <div id="witness-detail"></div>
+  </section>
+
+  <section id="tab-align" class="tab">
+    <h2>锚点对齐</h2>
+    <div class="row">
+      <select id="anchor-witness"></select>
+      <input id="anchor-offset" type="number" min="0" placeholder="规范化偏移">
+      <input id="anchor-name" placeholder="锚点名（可选）">
+      <button id="anchor-add">添加锚点</button>
+    </div>
+    <div id="alignment-table"></div>
+  </section>
+
+  <section id="tab-overlap" class="tab">
+    <h2>交叠区间可视化</h2>
+    <div class="row"><select id="overlap-witness"></select></div>
+    <div id="overlap-view"></div>
+    <h3>交叠单元对</h3>
+    <ul id="overlap-list"></ul>
+  </section>
+
+  <section id="tab-units" class="tab">
+    <h2>校勘单元</h2>
+    <form id="unit-form">
+      <input id="unit-name" placeholder="单元名称" required>
+      <div id="readings"></div>
+      <button type="button" id="add-reading">+ 添加读法</button>
+      <button type="submit">创建单元</button>
+    </form>
+    <ul id="unit-list"></ul>
+    <div id="conflict-box" class="hidden"></div>
+  </section>
+
+  <section id="tab-history" class="tab">
+    <h2>版本历史</h2>
+    <h3>锚点修订</h3>
+    <ul id="anchor-history"></ul>
+    <h3>编辑事件</h3>
+    <ul id="event-list"></ul>
+  </section>
+
+  <section id="tab-export" class="tab">
+    <h2>导出预检</h2>
+    <div class="row">
+      <button id="preflight-btn">运行预检</button>
+      <button id="export-btn">导出 XML</button>
+    </div>
+    <div id="preflight-result"></div>
+    <pre id="export-output" class="hidden"></pre>
+  </section>
+
+  <section id="tab-roundtrip" class="tab">
+    <h2>往返核验</h2>
+    <p class="hint">重新解析导出 XML，把语义差异分为：已知编辑 / 仅词法变化 / 不可接受丢失。</p>
+    <button id="roundtrip-btn">运行核验</button>
+    <div id="roundtrip-result"></div>
+  </section>
+</main>
+<div id="toast" class="hidden"></div>
+<script src="app.js"></script>
+</body>
+</html>
