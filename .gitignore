@@ -34,3 +34,6 @@ coverage/
 .vite/
 .turbo/
 *.tsbuildinfo
+
+# --- 异文织机项目数据（运行时生成，含原始 XML）---
+.loom-project/
